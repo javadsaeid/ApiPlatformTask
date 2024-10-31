@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <h1>Log in!</h1>
+    {% if app.user %}
+        <p>Welcome, {{ app.user.name }}!</p>
+        <a href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
+    <form method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="_username"  required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" required>
+
+        <button type="submit">login</button>
+
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.querySelector('#username').value;
+                const password = document.querySelector('#password').value;
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: username,
+                        password: password,
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.success) {
+                            window.location.href = '/';
+                        }
+                    });
+            });
+        });
+    </script>
+{% endblock %}
