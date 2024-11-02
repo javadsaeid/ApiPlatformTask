@@ -27,6 +27,10 @@ security:
                 password_path: password
             logout:
                 path: app_logout
+                #below config used when login system is don't need to store session when the user authenticate
+#            stateless: true
+            access_token:
+                token_handler: App\Security\ApiTokenHandler
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
