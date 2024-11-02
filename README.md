@@ -17,6 +17,7 @@ This project is a web application built using PHP, JavaScript, React, and TypeSc
 - PHP 8.1 or higher
 - Composer
 - Node.js and npm
+- Docker and Docker composer for db or postgresql installed locally.
 
 ### Steps
 1. **Clone the repository:**
